@@ -287,7 +287,7 @@ class BaiduYunTransfer:
         '''
         url = 'http://pan.baidu.com/rest/2.0/xpan/share?method=transfer'
         params = {'access_token': self.access_token, 'shareid': self.shareid, 'from': self.uk,}
-        data = {'sekey': self.sekey, 'fsidlist': str(self.fsid_list), 'path': self.dir}
+        data = {'sekey': self.sekey, 'fsidlist': str(self.fsid_list), 'path': self.dir,  'ondup':'newcopy'}
         res = requests.post(url, headers = self.headers, params = params, data = data)
 
         res_json = res.json()
@@ -324,5 +324,5 @@ if __name__ == '__main__':
     share_link = 'https://pan.baidu.com/s/1vzuR_X744zYJKnDHlm7vNA'                  # 分享链接
     #share_link = 'https://pan.baidu.com/share/init?surl=9PsW5sWFLdbR7eHZbnHelw'    # 分享链接，以上两种形式的链接都可以
     password = 'nvt5'                                                               # 分享提取码
-    dir = '/转存测试'                                                               # 转存路径，根路径为/
+    dir = '/转存测试'                                                               # 转存路径，根路径为/,只能使用已经存在的路径，不能自动新建文件夹
     BaiduYunTransfer(api_key, secret_key, share_link, password, dir)
