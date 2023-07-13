@@ -194,7 +194,7 @@ class BaiduYunTransfer:
         详情参见：https://pan.baidu.com/union/document/openLink#%E9%99%84%E4%BB%B6%E5%AF%86%E7%A0%81%E9%AA%8C%E8%AF%81
         '''
         url = 'https://pan.baidu.com/rest/2.0/xpan/share?method=verify'
-        params = {'surl': self.surl}
+        params = {'access_token':self.access_token,'surl': self.surl}
         data = {'pwd': self.password}
         res = requests.post(url, headers = self.headers, params = params, data = data)
         
@@ -238,7 +238,7 @@ class BaiduYunTransfer:
         sekey               附件链接密钥串，对应verify接口返回的randsk
         '''
         url = 'https://pan.baidu.com/rest/2.0/xpan/share?method=list'
-        params = {"shorturl": self.surl, "page":"1", "num":"100", "root":"1", "fid":"0", "sekey":self.sekey}
+        params = {'access_token':self.access_token,"shorturl": self.surl, "page":"1", "num":"100", "root":"1", "fid":"0", "sekey":self.sekey}
         res = requests.get(url, headers=self.headers, params=params)
         res_json = res.json()
         
